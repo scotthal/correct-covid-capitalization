@@ -1,0 +1,6 @@
+{
+  "name": "Correct COVID Capitalization",
+  "description": "Correctly capitalize 'COVID.'",
+  "version": "0.0.1",
+  "manifest_version": 2
+}
