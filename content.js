@@ -9,7 +9,7 @@ const correctTextNode = (textNode) => {
 };
 
 const depthFirstTraversal = (node) => {
-  if (node.nodeType == Node.TEXT_NODE) {
+  if (node.nodeType === Node.TEXT_NODE) {
     correctTextNode(node);
   }
   node.childNodes.forEach((node) => depthFirstTraversal(node));
