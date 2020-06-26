@@ -3,6 +3,7 @@
   "description": "Correctly capitalize 'COVID.'",
   "version": "0.0.1",
   "manifest_version": 2,
+  "permissions": ["storage"],
   "content_scripts": [
     {
       "matches": [
@@ -11,5 +12,6 @@
       ],
       "js": ["content.js"]
     }
-  ]
+  ],
+  "options_page": "options.html"
 }
