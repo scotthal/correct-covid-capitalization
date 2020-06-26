@@ -1,18 +1,29 @@
 "use strict";
 
-const correctTextNode = (textNode) => {
-  textNode.textContent = textNode.textContent.replace(/covid/g, "COVID");
+const correctTextNode = (textNode, correctCapitalization) => {
+  textNode.textContent = textNode.textContent.replace(
+    /covid/g,
+    correctCapitalization
+  );
   textNode.textContent = textNode.textContent.replace(
     /coronavirus/g,
     "Coronavirus"
   );
 };
 
-const depthFirstTraversal = (node) => {
+const depthFirstTraversal = (node, correctCapitalization) => {
   if (node.nodeType === Node.TEXT_NODE) {
-    correctTextNode(node);
+    correctTextNode(node, correctCapitalization);
   }
-  node.childNodes.forEach((node) => depthFirstTraversal(node));
+  node.childNodes.forEach((node) =>
+    depthFirstTraversal(node, correctCapitalization)
+  );
 };
 
-depthFirstTraversal(document);
+chrome.storage.sync.get({ capitalization: "acronym" }, (options) => {
+  let correctCapitalization = "COVID";
+  if (options.capitalization === "initial") {
+    correctCapitalization = "Covid";
+  }
+  depthFirstTraversal(document, correctCapitalization);
+});
